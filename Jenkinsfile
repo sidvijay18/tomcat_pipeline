@@ -1,37 +1,52 @@
 pipeline {
    agent any
 
-   tools {
+  // tools {
       // Install the Maven version configured as "M3" and add it to the path. Demo comment
-      maven "maven"
-      jdk "java"
+   //   maven "maven"
+  //    jdk "java"
                 
-   }
+  // }
 
    stages {
-      stage('Code Checkout') {
+      stage(' Code Checkout test') {
          steps {
             // Get some code from a GitHub repository
             git 'https://github.com/sidvijay18/tomcat_pipeline.git'   
          }
 
       }
-      
-      
-      stage('Unit Testing') {
+ stage('Code Modify test') {
          steps {
            
-            // To run Maven on a Windows agent, use
-           bat "mvn test"
+        
+           sh 'mvn compile'
          }
-      }
+       }
+      
+       stage('Code Testing test') {
+         steps {
+           
+        
+           sh 'mvn test'
+         }
+       }
          
-          stage('Build') {
+          stage('Code Made test') {
          steps {
            
-            // To run Maven on a Windows agent, use
-           bat "mvn package"
+        
+           sh 'mvn package'
          }
+
+      }
+      
+     stage(' Code Deploy test') {
+         steps {
+        
+           
+          sh 'cp -rf target/test-1.0.war /opt/apache-tomcat-9.0.80/webapps'
+            }
 
       }
    }
