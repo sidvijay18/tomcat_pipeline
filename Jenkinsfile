@@ -16,7 +16,7 @@ pipeline {
          }
 
       }
- stage('Code Compile') {
+ stage('Code Modify') {
          steps {
            
         
@@ -32,7 +32,7 @@ pipeline {
          }
        }
          
-          stage('Code Build') {
+          stage('Code Made') {
          steps {
            
         
